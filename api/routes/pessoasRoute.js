@@ -3,23 +3,29 @@ const PessoaController = require("../controllers/PessoaController");
 
 const router = Router();
 
-router.get("/pessoas", PessoaController.pegaTodasAsPessoas);
-router.get("/pessoas/:id", PessoaController.pegaUmaPessoa);
-router.post("/pessoas", PessoaController.criaPessoa);
-router.put("/pessoas/:id", PessoaController.atualizaPessoa);
-router.get(
-  "/pessoas/:estudanteId/matricula/:matriculaId",
-  PessoaController.pegaUmaMatricula
-);
-router.put(
-  "/pessoas/:estudanteId/matricula/:matriculaId",
-  PessoaController.atualizaMatricula
-);
-router.delete(
-  "/pessoas/:estudanteId/matricula/:matriculaId",
-  PessoaController.apagaMatricula
-);
-router.post("/pessoas/:estudanteId/matricula/", PessoaController.criaMatricula);
-router.delete("/pessoas/:id", PessoaController.apagaPessoa);
+router
+  .get("/pessoas", PessoaController.pegaTodasAsPessoas)
+  .get("/pessoas/:id", PessoaController.pegaUmaPessoa)
+  .post("/pessoas", PessoaController.criaPessoa)
+  .post("/pessoas/:id/restaura", PessoaController.restauraPessoa)
+  .put("/pessoas/:id", PessoaController.atualizaPessoa)
+  .get(
+    "/pessoas/:estudanteId/matricula/:matriculaId",
+    PessoaController.pegaUmaMatricula
+  )
+  .put(
+    "/pessoas/:estudanteId/matricula/:matriculaId",
+    PessoaController.atualizaMatricula
+  )
+  .delete(
+    "/pessoas/:estudanteId/matricula/:matriculaId",
+    PessoaController.apagaMatricula
+  )
+  .post(
+    "/pessoas/:estudanteId/matricula/:matriculaId/restaura",
+    PessoaController.restauraMatricula
+  )
+  .post("/pessoas/:estudanteId/matricula/", PessoaController.criaMatricula)
+  .delete("/pessoas/:id", PessoaController.apagaPessoa);
 
 module.exports = router;

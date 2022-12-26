@@ -112,5 +112,30 @@ class PessoaController {
       return res.status(500).json(error.message);
     }
   }
+  static async restauraPessoa(req, res) {
+    const { id } = req.params;
+    const where = { where: { id: Number(id) } };
+
+    try {
+      await database.Pessoas.restore(where);
+      return res.status(200).json({ mensagem: `id ${id} restaurado` });
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  }
+  static async restauraMatricula(req, res) {
+    const { estudanteId, matriculaId } = req.params;
+
+    const where = {
+      where: { id: Number(matriculaId), estudante_id: Number(estudanteId) },
+    };
+
+    try {
+      await database.Matriculas.restore(where);
+      return res.status(200).json({ mensagem: `id ${matriculaId} restaurado` });
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  }
 }
 module.exports = PessoaController;
