@@ -1,4 +1,5 @@
 const database = require("../models");
+
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
