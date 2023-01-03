@@ -18,5 +18,18 @@ class Services {
   async apagaRegistro(id) {
     return database[this.nomeDoModelo];
   }
+
+  async atualizaRegistro(dadosAtualizados, id, transacao = {}) {
+    return database[this.nomeDoModelo].update(dadosAtualizados, {
+      where: { id: id },
+      transacao,
+    });
+  }
+  async atualizaRegistros(dadosAtualizados, where, transacao = {}) {
+    return database[this.nomeDoModelo].update(dadosAtualizados, {
+      where: { ...where },
+      transacao,
+    });
+  }
 }
 module.exports = Services;
